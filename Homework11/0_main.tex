@@ -1,0 +1,164 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\everymath{\displaystyle}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+\section{Problem 1}
+\subsection{}
+By eulers identity:
+\begin{equation}
+    \begin{split}        
+    e^{i\theta} = \cos\theta + i\sin\theta\\
+    \cos(\theta) = \frac{e^{i\theta} + e^{-i\theta}}{2}\\
+    \sin(\theta) = \frac{e^{i\theta} - e^{-i\theta}}{2i}
+    \end{split}
+\end{equation}
+Using these we can find fourier transform of sine and cosine functions. We can denote F.T as $\mathcal{F}$.
+\begin{equation}
+    \begin{gathered}
+        \mathcal{F}\cos = \int_{-\infty}^{\infty}\cos(x)e^{-ikx}dx = \int_{-\infty}^{\infty}\frac{e^{ix} + e^{-ix}}{2}e^{-ikx}dx = \\ 
+        \frac{1}{2}\int_{-\infty}^{\infty}e^{i(1-k)x}dx + \frac{1}{2}\int_{-\infty}^{\infty}e^{i(-1-k)x}dx\\
+    \end{gathered}
+\end{equation}
+Using $\delta(k)=\frac{1}{2\pi}\int_{-\infty}^{\infty}e^{ixk}dx$, and since Dirawc-delta is even:
+\begin{equation}
+    \begin{gathered}
+        \mathcal{F}\cos = \pi\left[\delta(k-1)+\delta(k+1)\right]
+    \end{gathered}
+\end{equation}
+Similarly:
+\begin{equation}
+    \begin{gathered}
+        \mathcal{F}\sin = \int_{-\infty}^{\infty}\sin(x)e^{-ikx}dx = \int_{-\infty}^{\infty}\frac{e^{ix} - e^{-ix}}{2i}e^{-ikx}dx = \\ 
+        \frac{1}{2i}\int_{-\infty}^{\infty}e^{i(1-k)x}dx - \frac{1}{2i}\int_{-\infty}^{\infty}e^{i(-1-k)x}dx\\
+    \end{gathered}
+\end{equation}
+\begin{equation}
+    \begin{gathered}
+        \mathcal{F}\sin = \pi i\left[\delta(k+1)-\delta(k-1)\right]
+    \end{gathered}
+\end{equation}
+\subsection{}
+Fourier transform can be written as:
+\begin{equation}
+    \begin{gathered}
+        f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\hat{f}(y)e^{ikx}dy\\
+        = \frac{1}{2\pi}\int_{-\infty}^{\infty}\left[\int_{-\infty}^{\infty}f(z)e^{-ikz}dz\right]e^{ikx}dy\\        
+        = \frac{1}{2\pi}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(z)e^{ik(x-z)}dzdy\\
+    \end{gathered}
+\end{equation}
+Changing order of integration:
+\begin{equation}
+    \begin{gathered}
+        f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(z)e^{ik(x-z)}dydz\\
+        = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(z)\int_{-\infty}^{\infty}e^{ik(x-z)}dydz\\
+        = \frac{1}{2\pi}\int_{-\infty}^{\infty}f(z)2\pi\delta(x-z)dz\\
+        = \int_{-\infty}^{\infty}f(z)\delta(x-z)dz\\
+        = f(x)
+    \end{gathered}
+\end{equation}
+\subsection{}
+To find the F.T. of $m(t) = \cos(ft)s(t)$:
+\begin{equation}
+    \begin{gathered}
+        M(k) = \int_{-\infty}^{\infty}m(t)e^{-ikt}dt = \int_{-\infty}^{\infty}\cos(ft)s(t)e^{-ikt}dt = \\
+        \int_{-\infty}^{\infty}\frac{e^{ift} + e^{-ift}}{2}s(t)e^{-ikt}dt = \frac{1}{2}\int_{-\infty}^{\infty}e^{i(f-k)t}s(t)dt + \frac{1}{2}\int_{-\infty}^{\infty}e^{-i(f+k)t}s(t)dt\\
+        = \frac{1}{2}\left[S(f-k)+S(f+k)\right]
+    \end{gathered}
+\end{equation}
+\section{Problem 2}
+\subsection{}
+Since fundamental period of $\cos(x)$ is $2\pi$, and fundamental period of $\sin(2x)$ is $\pi$, 
+fundamental period of $f(x) = \cos(x)+\sin(2x)$ is $2\pi$ the least common denominator of $2\pi$ and $\pi$.
+Therefore $f(x)$ is periodic with period $2\pi$, meaning $f(x+2\pi) = f(x)$. Meaning smallest value for T is $2\pi$.
+\subsection{}
+Let $f(x) = \cos(x)+\sin(2x)$, and T = $4\pi$. Using $f_p(x) = f(x-T\left\lfloor\frac{x}{T}\right\rfloor)$, we can find $f_p(x)$ for x = $\{10,11,21,22\}$:
+\begin{equation}
+    \begin{gathered}
+        f_p(10) = f\left(10-4\pi\left\lfloor\frac{10}{4\pi}\right\rfloor\right) = f(10)\\
+        f_p(11) = f\left(11-4\pi\left\lfloor\frac{11}{4\pi}\right\rfloor\right) = f(11)\\
+        f_p(21) = f\left(21-4\pi\left\lfloor\frac{21}{4\pi}\right\rfloor\right) = f(21-4\pi)\\
+        f_p(22) = f\left(22-4\pi\left\lfloor\frac{22}{4\pi}\right\rfloor\right) = f(22-4\pi)
+    \end{gathered}
+\end{equation}
+\subsection{}
+Since $g(x) = x + x^2 + x^3$, its fundamental period is $2\pi$, L = $\pi$ and therefore F.T of $g(x)$ is:
+\begin{equation}
+    f(x) = \frac{a_0}{2} + \sum_{n=1}^{\infty}\left[a_m\cos(mx)+b_m\sin(mx)\right]
+\end{equation}
+From Euler-Fourier formulas, we can evaluate coefficients. Starting with $a_0$ is:
+\begin{equation}
+    \begin{gathered}
+        \frac{1}{\pi}\int_{-\infty}^{\infty}g(x)\cos(0)dx =\\
+        \frac{1}{\pi}\int_{-\infty}^{\infty}x + x^2 + x^3dx =\\ \frac{1}{\pi}\left[\frac{x^2}{2} + \frac{x^3}{3} + \frac{x^4}{4}\right]_{-\pi}^{\pi} =\\ \frac{1}{\pi}\left[\frac{\pi^2}{2} + \frac{\pi^3}{3} + \frac{\pi^4}{4} - \frac{\pi^2}{2} + \frac{\pi^3}{3} - \frac{\pi^4}{4}\right] = \frac{2\pi^2}{3}
+    \end{gathered}
+\end{equation}
+For $a_1$:
+\begin{equation}
+    \begin{split}
+        &\frac{1}{\pi}\int_{-\pi}^{\pi}g(x)\cos(x)dx =\\
+        &\frac{1}{\pi}\int_{-\pi}^{\pi}x\cos(x) + x^2\cos(x) + x^3\cos(x)dx =\\
+        &\frac{1}{\pi}\left[\int_{-\pi}^{\pi}x\cos(x)dx + \int_{-\infty}^{\infty}x^2\cos(x)dx + \int_{-\infty}^{\infty}x^3\cos(x)dx\right] =\\
+    \end{split}
+\end{equation}
+Calculating each integral separately:
+\begin{equation}
+    \begin{gathered}
+        \int_{-\pi}^{\pi}x\cos(x)dx = x\sin(x) + \cos(x)\bigg|_{-\pi}^{\pi} = 0\\
+        \int_{-\pi}^{\pi}x^2\cos(x)dx = -2[-x\cos(x)+\sin(x)]\bigg|_{-\pi}^{\pi} = -4\pi\\ 
+        \int_{-\pi}^{\pi}x^3\cos(x)dx = 3x^2\cos(x) - 6x\sin(x) - 6\cos(x)\bigg|_{-\pi}^{\pi} = 0
+    \end{gathered}
+\end{equation}
+Therefore:
+\begin{equation}
+    \begin{gathered}
+        \frac{1}{\pi}\int_{-\pi}^{\pi}g(x)\cos(x)dx = \frac{1}{\pi}\left[0-4\pi+0\right] = -4
+    \end{gathered}
+\end{equation}
+Now finding $b_1$:
+\begin{equation}
+    \begin{gathered}
+        \frac{1}{\pi}\int_{-\pi}^{\pi}g(x)\sin(x)dx =\\
+        \frac{1}{\pi}\int_{-\pi}^{\pi}x\sin(x) + x^2\sin(x) + x^3\sin(x)dx =\\
+        \frac{1}{\pi}\left[\int_{-\pi}^{\pi}x\sin(x)dx + \int_{-\pi}^{\pi}x^2\sin(x)dx + \int_{-\pi}^{\pi}x^3\sin(x)dx\right] =\\
+    \end{gathered}
+\end{equation}
+Calculating each integral separately:
+\begin{equation}
+    \begin{gathered}
+        \int_{-\pi}^{\pi}x\sin(x)dx = \sin(x) - x\cos(x)\bigg|_{-\pi}^{\pi} = 2\pi\\
+        \int_{-\pi}^{\pi}x^2\sin(x)dx = 0\\ 
+        \int_{-\pi}^{\pi}x^3\sin(x)dx = (3x^2-2)\sin(x) - x(x^2-6)\cos(x)\bigg|_{-\pi}^{\pi} = 2\pi^3 - 12\pi
+    \end{gathered}
+\end{equation}
+Therefore:
+\begin{equation}
+    \begin{gathered}
+        \frac{1}{\pi}\int_{-\pi}^{\pi}g(x)\sin(x)dx = \frac{1}{\pi}\left[2\pi+0+2\pi^3-12\pi\right] = 2\pi^2-10
+    \end{gathered}
+\end{equation}
+Giving us our final result:
+\begin{equation}
+    \begin{gathered}
+        f(x) = \frac{2\pi^2}{3} - 4\cos(x) + (2\pi^2-10)\sin(x) + ...
+    \end{gathered}
+\end{equation}
+\end{document}
+

@@ -1,0 +1,104 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\everymath{\displaystyle}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+
+\section{Problem 1}
+\subsection{}
+Since $\mathcal{D}\cdot f(x)$ is equal to:
+\begin{equation}
+    \label {eq:fx}
+    \left(\frac{\mathrm{d}^3}{\mathrm{d}x^3}+\cos(x) \frac{\mathrm{d}^2}{\mathrm{d}x^2}+x^3 \frac{\mathrm{d}}{\mathrm{d}x} + 1\right)f(x) = 0
+\end{equation} 
+And since $\mathcal{A}$ is equal to \ref{eq:fx}, we can rewrite it as matrix as:
+\begin{equation}
+    \frac{\mathrm{d}}{\mathrm{d}x} \begin{pmatrix}
+        f(x) \\
+        f'(x) \\
+        f''(x) \\
+    \end{pmatrix} = \begin{pmatrix}
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+        -1 & -\cos(x) & -x^3 \\
+    \end{pmatrix} \begin{pmatrix}
+        f(x) \\
+        f'(x) \\
+        f''(x) \\
+    \end{pmatrix}
+\end{equation}
+\section{Problem 2}
+\subsection{}
+Starting with matrix form of equation:
+\begin{equation}
+    \frac{\mathrm{d}}{\mathrm{d}x}
+    \begin{pmatrix}
+        f(x) \\
+        f'(x) \\
+        \vdots \\
+        f^{(n-2)}(x) \\
+        f^{(n-1)}(x) \\
+    \end{pmatrix} = \begin{pmatrix}
+        0 & 1 & 0 & \cdots  & 0 \\
+        0 & 0 & 1 & \cdots  & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & 0 & \cdots & 1\\
+        -a_n & -a_{n-1} & -a_{n-2} & \cdots & a_1\\ 
+    \end{pmatrix}
+    \begin{pmatrix}
+        f(x) \\
+        f'(x) \\
+        \vdots \\
+        f^{(n-2)}(x) \\
+        f^{(n-1)}(x) \\
+    \end{pmatrix}
+\end{equation}
+We can apply differential operator, and multiply matrices to get:
+\begin{equation}
+    \begin{pmatrix}
+        f'(x) \\
+        f''(x) \\
+        \vdots \\
+        f^{(n-1)}(x) \\
+        f^{(n)}(x) \\
+    \end{pmatrix}  = 
+    \begin{pmatrix}
+        f'(x) \\
+        f''(x) \\
+        \vdots \\
+        f^{(n-1)}(x) \\
+        -a_n f(x) - a_{n-1} f'(x) - \cdots - a_1 f^{(n-1)}(x) \\
+    \end{pmatrix}
+\end{equation}
+And last line gives us:
+\begin{equation}
+    f^{(n)}(x) = -a_n f(x) - a_{n-1} f'(x) - \cdots - a_1 f^{(n-1)}(x)
+\end{equation}
+Which is the same as:
+\begin{equation}
+    f^{(n)}(x) + a_1 f^{(n-1)}(x) + \cdots + a_n f(x) = 0
+\end{equation}
+\subsection{}
+We are given that:
+\begin{equation}
+    \det(\mathcal{M}) = \sum_{i_1,...,i_n}\epsilon_{i1,...,in}\mathcal{M}_{1i1}\mathcal{M}_{2i2}\cdots\mathcal{M}_{nin}
+\end{equation}
+asasa
+\end{document}

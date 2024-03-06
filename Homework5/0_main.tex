@@ -1,0 +1,213 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+\section{Problem 1}
+\subsection{} 
+Given our differential equations in form $f''(x) + 2f'(x) + f(x) = 0$, we can find the roots of the characteristic equation $r^2 + 2r + 1 = 0$ to be $r = -1$. This gives us the general solution:
+\begin{equation}
+    f(x) = c_1e^{-x} + c_2xe^{-x}
+\end{equation} 
+\subsection{}
+To prove that our differential equation $x^6f''(x) + 3x^5f'(x) - f(x) = 0$ can be written in form $\left(x^{a_1} \frac{\mathrm{d}}{\mathrm{dx}}+ b_1\right)\cdot\left(x^{a_2} \frac{\mathrm{d}}{\mathrm{dx}}+ b_2\right)\cdot f(x)=0$:
+\begin{equation}
+    \label {eq:proof}
+    \begin{split}
+        &\left(x^{a_1} \frac{\mathrm{d}}{\mathrm{dx}}+ b_1\right)\cdot\left(x^{a_2} \frac{\mathrm{d}}{\mathrm{dx}}+ b_2\right)f(x)= \left(x^{a_1} \frac{\mathrm{d}}{\mathrm{dx}}+ b_1\right)\cdot(x^{a_2}f'+b_2f)\\
+        &= x^{a_1} \frac{\mathrm{d}}{\mathrm{d}x}\left(x^{a_2}f'+b_2f\right) + b_1\left(x^{a_2}f'+b_2f\right)\\
+        &= x^{a_1}\left(x^{a_2}f''+a_2x^{a_2-1}f'+b_2f'\right) + b_1\left(x^{a_2}f'+b_2f\right)\\
+        &= x^{a_1 + a_2}f'' + a_2x^{a_1 + a_2 - 1}f' + b_2x^{a_1}f' + b_1x^{a_2}f' + b_1b_2f\\
+        &= x^{a_1 + a_2}f'' + \left(a_2x^{a_1 + a_2 - 1} + b_2x^{a_1} + b_1x^{a_2}\right)f' + b_1b_2f
+    \end{split}
+\end{equation}
+From \ref{eq:proof}, it can be seen that $a_1 + a_2 = 6$, $b_1b_2 = -1$, and $a_1 = a_2 = 3$. Giving us:
+\begin{equation}
+    \left(x^3 \frac{\mathrm{d}}{\mathrm{dx}}+ 1\right)\cdot\left(x^3 \frac{\mathrm{d}}{\mathrm{dx}}- 1\right)\cdot f(x)=0
+\end{equation}
+\subsection{}
+Since our operators commute, we can write our differential equation as we can solve our differential equation for each operator separately:
+\begin{equation}
+    \begin{split}
+    &\left(x^3 \frac{\mathrm{d}}{\mathrm{d}x}+1\right)\cdot f(x) = 0\\
+    &x^3f' + f = 0\\
+    &\frac{f'}{f} = -\frac{1}{x^3}\\
+    &\ln(f) = \frac{1}{2x^2} + c_1\\
+    &f(x) = c_2e^{1/2x^2} 
+    \end{split}
+\end{equation}
+Solving similarly for second operator:\
+\begin{equation}
+    f(x) = c_2e^{-1/2x^2} 
+\end{equation}
+Giving us our final solution:
+\begin{equation}
+    f(x) = c_1e^{1/2x^2} + c_2e^{-1/2x^2}
+\end{equation}
+\subsection{}
+Given our differential equation:
+\begin{equation}
+    \left(\frac{\mathrm{d}^2}{\mathrm{d}x^2}+ \frac{\mathrm{d}}{\mathrm{d}x} + e^{-2x}\right)f(x) = e^{-2x}
+\end{equation}
+We can get our substitution parameter $u(x)$ by solving:
+\begin{equation}
+    \label{eq:subpar}
+    u(x) = \int\sqrt{e^{-2x}}\mathrm{d}x = \int e^{-x}\mathrm{d}x = -e^{-x} + c_1
+\end{equation}
+Finding substitutions for $\frac{\mathrm{d}^2f}{\mathrm{d}^2x}$ and $\frac{\mathrm{d}f}{\mathrm{d}x}$:
+\begin{equation}
+    \begin{split}
+        &\frac{\mathrm{d}^2f}{\mathrm{d}x^2} = u''\frac{\mathrm{d}f}{\mathrm{d}u} + u'\frac{\mathrm{d}^2f}{\mathrm{d}u^2}\\
+        &\frac{\mathrm{d}f}{\mathrm{d}x} = u'\frac{\mathrm{d}f}{\mathrm{d}u}        
+    \end{split}
+\end{equation}
+After substituting into our differential equation, we get:
+\begin{equation}
+    \left(\left(u'(x)^2\right)\frac{\mathrm{d}^2}{\mathrm{d}u^2}+\left(u''+u'(x)\right)\frac{\mathrm{d}}{\mathrm{d}u}+e^{-2x}\right)f(x) = e^{-2x}
+\end{equation}
+Since $u'(x) = e^{-x}$, $u''(x) = -e^{-x}$, and dividing both sides by $u'(x)^2$:
+\begin{equation}
+    \left(\frac{\mathrm{d}^2}{\mathrm{d}u^2}+1\right)f(u) = 1
+\end{equation}
+Solving for $f(u)$, first we find the homogeneous solution:
+\begin{equation}
+    \begin{split}
+        &\left(\frac{\mathrm{d}^2}{\mathrm{d}u^2}+1\right)f(u) = 0\\
+        &x^2 +1 = 0\\
+        &x = \pm i\\
+        &f(u) = c_1e^{iu} + c_2e^{-iu}\\
+        &f(u) = d_1\cos(u) + d_2\sin(u)
+    \end{split}
+\end{equation}
+Now we can find the particular solution by finding impulse response and using convolution:
+\begin{equation}
+    \left(\frac{\mathrm{d}^2}{\mathrm{d}u^2}+1\right)\mathbbm{i}(u) = \delta(u)
+\end{equation}
+Laplace transforming both sides:
+\begin{equation}
+    \left(s^2+1\right)\mathbbm{I}(s) = 1
+\end{equation}
+\begin{equation}
+    \mathbbm{I}(s) = \frac{1}{s^2+1}
+\end{equation}
+Inverse Laplace transforming:
+\begin{equation}
+    \mathbbm{i}(u) = \sin(u)
+\end{equation}
+Now we can use convolution to find the particular solution:
+\begin{equation}
+    f_p(u) = \int_{0}^{\infty} \mathbbm{i}(\tau)\mathrm{d}\tau
+\end{equation}
+However, since impulse response is zero for $u < 0$, we can simplify our integral:
+\begin{equation}
+    f_p(u) = \int_{0}^{u} \mathbbm{i}(\tau)\mathrm{d}\tau = \int_{0}^{u} \sin(\tau)\mathrm{d}\tau = -\cos(u) + 1
+\end{equation}
+Giving us our final solution:
+\begin{equation}
+    f(u) = a_1\cos(u) + a_2\sin(u) + 1
+\end{equation}
+Going back to our original variable $x$:
+\begin{equation}
+    f(x) = a_1\cos(-e^{-x}) + a_2\sin(-e^{-x}) + 1
+\end{equation}
+\subsection{}
+To solve given differential equation, we can use $h(x) = g^{(2)(x)}$:
+\begin{equation}
+    g^{(4)}(x) + 2g^{(3)}(x) + g^{(2)}(x) = 0
+\end{equation}
+Giving us:
+\begin{equation}
+    h''(x) + 2h'(x) + h(x) = 0
+\end{equation}
+Solving for $h(x)$ using characteristic equation:
+\begin{equation}
+    h(x) = c_1we^{-x} + c_2xe^{-x}
+\end{equation}
+And now to find $g(x)$ we can integrate $h(x)$ twice:
+\begin{equation}
+    g'(x) = \int h(x) \mathrm{dx} = \int c_1e^{-x} + c_2xe^{-x} \mathrm{dx} = c_1e^{-x} + c_2xe^{-x} + c_3
+\end{equation}
+\begin{equation}
+    g(x) = \int g'(x) \mathrm{dx} = \int c_1e^{-x} + c_2xe^{-x} + c_3 \mathrm{dx} = d_1e^{-x} + d_2xe^{-x} + d_3x + d_4
+\end{equation}
+Giving us our final solution:
+\begin{equation}
+    g(x) = d_1e^{-x} + d_2xe^{-x} + d_3x + d_4
+\end{equation}
+\subsection{}
+If general third order differential equation is given as:
+\begin{equation}
+    \left(p(x)\frac{\mathrm{d}^3}{\mathrm{d}x^3} + q(x)\frac{\mathrm{d}^2}{\mathrm{d}x^2} + r(x)\frac{\mathrm{d}}{\mathrm{d}x} + s(x)\right)f(x) = 0
+\end{equation}
+For our differential equation to be exact or in other words:
+\begin{equation}
+    \frac{\mathrm{d}}{\mathrm{dx}}\left(\left[a(x)\frac{\mathrm{d}^2}{\mathrm{d}x^2} + b(x)\frac{\mathrm{d}}{\mathrm{d}x} + c(x)\right]f(x)\right) = 0
+\end{equation}
+We need to have:
+\begin{equation}
+    \begin{split}
+        &a = p\\
+        &b = q - \frac{\mathrm{d}p}{\mathrm{d}x}\\
+        &c = \int s\mathrm{d}x
+    \end{split}
+\end{equation}
+And therefore condition becomes:
+\begin{equation}
+    \label{eq:cond}
+    r = q' -p'' + \int s \mathrm{d}x
+\end{equation}
+For our given differential equation:
+\begin{equation}
+    \begin{split}
+        &p(x) = x\\
+        &q(x) = 1\\
+        &r(x) = 1/x\\
+        &s(x) = -1/x^2
+    \end{split}
+\end{equation}
+Substituting into \ref{eq:cond}:
+\begin{equation}
+    \begin{split}
+        &r = q' -p'' + \int s \mathrm{d}x\\
+        &\frac{1}{x} = 0 - 0 + \int -\frac{1}{x^2} \mathrm{d}x\\
+        &\frac{1}{x} = \frac{1}{x}
+    \end{split}
+\end{equation}
+Which proves that our differential equation is exact.
+\subsection{}
+Given our differential equation $(x-1)f''(x) - xf'(x) + f(x) = 0$ and of its solutions $e^x$, we can write it as first order differential equation, by using $f(x) = e^xg(x)$:
+\begin{equation}
+    \begin{split}
+        f'(x) &= e^xg'(x) + e^xg(x)\\
+        f''(x) &= e^xg''(x) + 2e^xg'(x) + e^xg(x)
+    \end{split}
+\end{equation}
+Substituting into our differential equation:
+\begin{equation}
+\begin{split}
+    &(x-1)\left[g''(x)e^x + 2g'(x)e^x + g(x)e^x\right] - x\left[g'(x)e^x+g(x)e^x\right] + g(x)e^x = 0\\
+    &(x-1)g''(x) + (2x-3)g'(x) = 0
+\end{split}
+\end{equation}
+Replacing $g'(x)$ with $h(x)$:
+\begin{equation}
+    (x-1)h'(x) + (2x-3)h(x) = 0
+\end{equation}
+Which proves we can rewrite it as first order differential equation.
+\end{document}

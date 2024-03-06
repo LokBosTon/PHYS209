@@ -1,0 +1,60 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+
+\section{Problem One}
+\subsection{}
+The higher order function \textit{sqr2} can be defined as:
+\begin{equation}
+    sqr::(\mathbb{C}\rightarrow\mathbb{C}) \rightarrow (\mathbb{C}\rightarrow\mathbb{C})
+\end{equation}
+\begin{equation}
+    sqr2 = (x \rightarrow f(x)) \rightarrow (x \rightarrow 2f(x)) 
+\end{equation}
+
+\subsection{}
+Since $\cos(x)' = -\sin(x)$ the type and definition of high order function $(\frac{d}{dx} + I)$:
+\begin{equation}
+    \left(\frac{d}{dx} + \mathcal{I}\right)\cdot\cos(x)::(\mathbb{C}\rightarrow\mathbb{C}) \rightarrow (\mathbb{C}\rightarrow\mathbb{C})
+\end{equation}
+\begin{equation}
+    \left(\frac{d}{dx} + \mathcal{I}\right)\cdot\cos(x) = (x \rightarrow \cos(x)) \rightarrow (x \rightarrow \cos(x) - \sin(x))
+\end{equation}
+
+\subsection{}
+Type of operator \textit{C} when acting on real variables and real functions is:
+\begin{equation}
+    C::[(\mathbb{R}\rightarrow\mathbb{R})\rightarrow(\mathbb{R}\rightarrow\mathbb{R})] \rightarrow[(\mathbb{R}\rightarrow\mathbb{R})\rightarrow(\mathbb{R}\rightarrow\mathbb{R})]
+\end{equation}
+
+\subsection{}
+Action of $\exp\left(\frac{d}{dx}\right)x^4$  can be calculated as:
+\begin{multline}
+    \exp\left(\frac{d}{dx}\right)x^4 = (x^4)^{(0)} + \frac{1}{1!}(x^4)^{(1)} + \frac{1}{2!}(x^4)^{(2)} + \frac{1}{3!}(x^4)^{(3)} + \frac{1}{4!}(x^4)^{(4)} + ...  =\\x^4 + 4x^3 + 6x^2 + 4x + 1
+\end{multline}
+Since $(x^4)^{(n)}$ is equal to 0 for any $n>4$ it is easy to calculate analytically
+\subsection*{}
+However, if we simplify (6) even further it can be seen that
+\begin{equation}
+    4x^3 + 6x^2 + 4x + 1 = (x+1)^4
+\end{equation}
+Which amazingly coincides with its geometrical meaning of shifting argument
+\end{document}

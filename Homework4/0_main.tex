@@ -1,0 +1,157 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+\section{Problem 1}
+\subsection{}
+To solve $\mathrightbat_a \cdot \mathghost_\triangle = \pumpkin$ we can necessary substitutions and get:  
+\begin{equation*}
+    \left(x \frac{\mathrm{d}}{\mathrm{d}x}-a\right)x^\triangle = 0
+\end{equation*}
+\begin{equation}
+    \frac{\mathrm{d}}{\mathrm{d}x}x^\triangle - ax^\triangle = 0
+\end{equation}
+\begin{equation*}
+    \triangle x x^{\triangle-1} = ax^\triangle
+\end{equation*}
+Giving us $\triangle = a$
+\subsection{}
+Considering definitions of $\bigskull_a$, $\bigskull_b$ and commutator operator, following can be achieved:
+\begin{multline}
+    \left[\bigskull_a,\bigskull_b\right]\cdot f = \bigskull_a\cdot\left(\bigskull_b\cdot f\right) - \bigskull_b\cdot\left(\bigskull_a\cdot f\right) = \bigskull_a\cdot\left(f'-bf\right) - \bigskull_b\cdot\left(f'-af\right) =\\
+    =(f'-bf)'-a(f'-bf) - (f'-af)' +b(f'-af) =\\ = f'' - bf' -af + abf - f'' +af' + bf' -abf = x\rightarrow 0
+\end{multline}
+Which proves and $\big[\bigskull_a,\bigskull_b\big]\cdot f = \pumpkin$ therefore $\bigskull_a$ and $\bigskull_b$ commute.
+\subsection{}
+To prove commutativity $\mathrightbat_a$ and $\mathrightbat_b$, using their definitions:
+\begin{multline}
+    \left[\mathrightbat_a,\mathrightbat_b\right]\cdot f = \mathrightbat_a(\mathrightbat_b\cdot f) - \mathrightbat_b(\mathrightbat_a\cdot f) = \mathrightbat_a\cdot\left(x\frac{\mathrm{d}}{\mathrm{d}x} - b\right)f - \mathrightbat_b\cdot\left(x\frac{\mathrm{d}}{\mathrm{d}x} - a\right)f =\\
+    = x(xf'-bf)' - a(xf'-bf) - x(xf'-af)' + b(xf'-af) = \\xf' + x^2f'' - xbf' - axf' +abf - xf' - x^2f'' + af'x +bxf' -abf'= x\rightarrow 0
+\end{multline}
+Proving that $\left[\mathrightbat_a,\mathrightbat_b\right]\cdot f = \pumpkin$ therefore $\mathrightbat_a$ and $\mathrightbat_b$ commute.
+\subsection{}
+To check whether $\mathrightbat_b$ and $\bigskull_a$ commute, we can use their definitions:
+\begin{multline}
+    \left[\bigskull_a,\mathrightbat_b\right]\cdot f = \bigskull_a\cdot\left(\mathrightbat_b\cdot f\right) - \mathrightbat_b\cdot\left(\bigskull_a\cdot f\right) = \bigskull_a\cdot\left(xf' - b\right)f - \mathrightbat_b\cdot\left(f'-af\right) =\\
+    = (xf'-bf')' - a(xf'-bf) - (f'-af)' + b(f'-af) = \\ f' + xf'' -bf' - axf' + abf - xf'' +axf' +bf' -abf = x\rightarrow f'
+\end{multline}
+Since commutator isn't equal to 0, these operators don't commute.
+\subsection{}
+Since commutability of differential operator $\mathrightbat$ is proved in previous sections, we can use it to solve given differential equation:
+\begin{equation}
+    \mathrightbat_{a_1}\cdot\mathrightbat_{a_2}\cdot\cdot\cdot\mathrightbat_{a_n}\cdot f = \pumpkin
+\end{equation}
+We can find one solution as:
+\begin{equation}
+    \begin{split}
+        \left(x \frac{\mathrm{d}}{\mathrm{d}x}-a_1\right)f = 0\\
+        xf' = a_1f\\
+        \frac{f'}{f} = \frac{a_1}{x}\\
+        \ln(f) = a_1\ln(x) + C\\
+        f = c_1x^{a_1}
+    \end{split}
+\end{equation}
+Becouse of commutability, since we have $n$ operators, we can find $n$ solutions:
+\begin{equation}
+    f = c_1x^{a_1} + c_2x^{a_2} + \cdot\cdot\cdot + c_nx^{a_n}
+\end{equation}
+\section{Problem 2}
+\subsection{}
+Given our differential equation:
+\begin{equation}
+    \left(\frac{\mathrm{d}^2}{\mathrm{d}x^2}+\pi \tan(\pi x)\frac{\mathrm{d}}{\mathrm{dx}}+\pi^4 \cos(\pi x)^2\right)f(x) = 0
+\end{equation}
+New substitution parameter $u(x)$ can be defined as:
+\begin{equation}
+    u(x) = \int \sqrt{q(x)}\mathrm{d}x = \int \sqrt{\pi^4 \cos(\pi x)^2} \mathrm{d}x = \int \pi^2 \cos(\pi x)\mathrm{d}x = \pi \left|\sin(\pi x)\right| + C
+\end{equation}
+However it doesn't matter if $u(x)=\pi \sin(\pi x)$ or $u(x)=-\pi \sin(\pi x)$ since $\frac{q(x)}{u'(x)}$ can be choosen to be equal to -1 or 1.\\
+For our differential equation to be rewritten as linear differential equation with constant coefficients, following condition must be satisfied:
+\begin{equation}
+    \label{eq:condition}
+    \frac{q'(x)+2p(x)q(x)}{2q(x)^{3/2}} = const
+\end{equation}
+Substituting $q(x)$ and $p(x)$ with their values we get:
+\begin{equation}
+    \frac{-2\pi^5\cos(\pi x)\sin(\pi x)+ 2\pi^5\tan(\pi x)\cos(\pi x)^2}{2\left(\pi^2\cos(\pi x)\right)^3} = 0
+\end{equation} 
+Since, condition \ref{eq:condition} is satisfied.
+\subsection{}
+To rewrite our differential equation as linear differential equation with constant coefficients, we need to find substitutions for $\frac{\mathrm{d}^2f}{\mathrm{d}x^2}$ and $\frac{\mathrm{d}f}{\mathrm{d}x}$:
+`\begin{equation}
+    \frac{\mathrm{d}^2f}{\mathrm{d}x^2} = u''\frac{\mathrm{d}f}{\mathrm{d}u} + u'\frac{\mathrm{d}^2f}{\mathrm{d}u^2}
+\end{equation}
+\begin{equation}
+    \frac{\mathrm{d}f}{\mathrm{d}x} = u'\frac{\mathrm{d}f}{\mathrm{d}u}
+\end{equation}'
+\subsection{}
+Now using substitutions from previous section, we can rewrite our differential equation in terms of $u$:
+\begin{equation}
+    \left(\frac{\mathrm{d}^2}{\mathrm{d}u^2} + \frac{u''+u'p(x)}{(u')^2}\frac{\mathrm{d}}{\mathrm{d}u}+\frac{q(x)}{(u')^2}\right)f(x) = 0
+\end{equation}
+Where $u''$ and $u'$ are:
+\begin{equation}
+    u' = \pi^2\cos(\pi x)
+\end{equation}
+\begin{equation}
+    u'' = -\pi^3\sin(\pi x)
+\end{equation}
+Making substitutions:
+\begin{equation}
+    \left(\frac{\mathrm{d}^2}{\mathrm{d}u^2} + \frac{-\pi^3\sin(\pi x)+\pi^2\cos(\pi x)\pi\tan(\pi x)}{\pi^4\cos(\pi x)^2}\frac{\mathrm{d}}{\mathrm{d}u}+\frac{\pi^4\cos(\pi x)^2}{\pi^4\cos(\pi x)^2}\right)f(x) = 0
+\end{equation}
+\begin{equation}
+    \left(\frac{\mathrm{d}^2}{\mathrm{d}u^2} +1\right)f(x) = 0
+\end{equation}
+\subsection{}
+To solve this ordinary linear differential equation with constant coefficients, we need to find and solve its characteristic equation:
+\begin{equation}
+    \begin{split}
+        r^2 + 1 = 0\\
+        r_{1,2} = \pm i
+    \end{split}
+\end{equation}
+Using roots of characteristic equation, we can find general solution of our differential equation:
+\begin{equation}
+    f(u(x)) = c_1e^{iu} + c_2e^{-iu} =d_1\cos(u) + d_2\sin(u)
+\end{equation}
+\subsection{}
+Writing our answer again in terms of $x$:
+\begin{equation}
+    f(x) = d_1\cos(\pi\sin(\pi x)) + d_2\sin(\pi\sin(\pi x))
+\end{equation}
+\subsection{}
+Assuming given initial conditions $f(x=0) = 12000212\sqrt{2}$ and $f'(x=0) = 17101711\sqrt{2}\pi^2$ we can determine values of $d_1$ and $d_2$:
+\begin{equation}
+    \begin{split}
+        % allign this to center
+        &f(x=0) = d_1 = 12000212\sqrt{2}\\
+        &f'(x=0) = d_2\pi^2 = 17101711\sqrt{2}\pi^2
+    \end{split}
+\end{equation}
+Giving us our final solution:
+\begin{equation}
+    f(x) = 12000212\sqrt{2}\cos(\pi\sin(\pi x)) + 17101711\sqrt{2}\sin(\pi\sin(\pi x))
+\end{equation}
+Plugging in $x = \frac{\arcsin(1/4)}{\pi}$ we get:
+\begin{equation}
+    f\left(\frac{\arcsin(1/4)}{\pi}\right) = 29101923
+\end{equation}
+\end{document}

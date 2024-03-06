@@ -1,0 +1,113 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\everymath{\displaystyle}
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+
+\section{Problem 1}
+\subsection{}
+We have system of equations, from which we need find ordinary differential equation:
+\begin{equation}
+    \begin{cases}
+        \left(\frac{\mathrm{d}^3}{\mathrm{d}t^3}+ab^2\right)c(t) = p(t)\\
+        c''(t) = \frac{1}{a}-\frac{1}{a}p(t)-\frac{b^2}{a}c'(t)
+    \end{cases}
+\end{equation}
+Finding $p(t)$ from second equation:
+\begin{equation}
+    \label{eq:pt}
+    p(t) = -a\left(c''(t)+\frac{b^2}{a}c'(t)-\frac{1}{a}\right)
+\end{equation}
+Substituting \eqref{eq:pt} into first equation:
+\begin{equation}
+    \begin{gathered}
+        \left(\frac{\mathrm{d}^3}{\mathrm{d}t^3}+ab^2\right)c(t) = -a\left(c''(t)+\frac{b^2}{a}c'(t)-\frac{1}{a}\right)\\
+        c^{(3)}(t)+ab^2c(t) = -ac''(t)-b^2c'(t)+1\\
+        c^{(3)}(t)+ac''(t)+b^2c'(t)+ab^2c(t) = 1\\
+        \left[\frac{\mathrm{d^3}}{\mathrm{d}t^3} + a\frac{\mathrm{d}^2}{\mathrm{d}t^2}+b^2 \frac{\mathrm{d}}{\mathrm{d}t}+ab^2\right]c(t)=1    
+    \end{gathered}    
+\end{equation}
+\subsection{}
+We can start with finding particular solution of our differential equation, by using either method of undetermined coefficients or impulse responce method.However iin this case it is obviuos that particular solution is $c_p(t) = \frac{1}{ab^2}$, which can be verified by substituting into differential equation:
+\begin{equation}
+    \begin{gathered}
+        \left[\frac{\mathrm{d^3}}{\mathrm{d}t^3} + a\frac{\mathrm{d}^2}{\mathrm{d}t^2}+b^2 \frac{\mathrm{d}}{\mathrm{d}t}+ab^2\right]\frac{1}{ab^2}=1\\
+        \frac{1}{ab^2}\left[0+a\cdot 0+b^2 \cdot 0+ab^2\right]=1\\
+        \frac{1}{ab^2}\cdot ab^2=1\\
+        1=1
+    \end{gathered}
+\end{equation}
+\subsection{}
+Considering physical boundary conditions of system, on of the solutions must be in the form $e^{-\alpha t}$, using this information we can reduce the order of our differential equation, by substituting:
+\begin{equation}
+    \begin{gathered}
+        c(t) = e^{-\alpha t}u(t)\\
+        c'(t) = -\alpha e^{-\alpha t}u(t)+e^{-\alpha t}u'(t)\\
+        c''(t) = \alpha^2 e^{-\alpha t}u(t)-2\alpha e^{-\alpha t}u'(t)+e^{-\alpha t}u''(t)\\
+        c^{(3)}(t) = -\alpha^3 e^{-\alpha t}u(t)+3\alpha^2 e^{-\alpha t}u'(t)-3\alpha e^{-\alpha t}u''(t)+e^{-\alpha t}u'''(t)
+    \end{gathered}
+\end{equation}
+For us to be able to reduce the order of the differential equation, we need $u(t)$ to be absent, therefore coefficient of $u(t)$ must be zero:
+\begin{equation}
+    -\alpha^3 e^{-\alpha t} + a\alpha^2 e^{-\alpha t} + b^2\alpha e^{-\alpha t} + ab^2e^{-\alpha t} = 0
+\end{equation}
+Dividing both sides by $e^{-\alpha t}$, and refactoring we get:
+\begin{equation}
+    \left(\alpha^2+b^2\right)\left(a-\alpha\right) = 0
+\end{equation}
+We have our solutions for $\alpha$:
+\begin{equation}
+    \alpha_1 = a, \quad \alpha_2 = \pm ib
+\end{equation}
+Since $\alpha_1$ is our only solution that corrects our initial condition:
+\begin{equation}
+    \begin{gathered}
+        c(t) = e^{-at}u(t)\\
+        c'(t) = -ae^{-at}u(t)+e^{-at}u'(t)\\
+        c''(t) = a^2 e^{-at}u(t)-2ae^{-at}u'(t)+e^{-at}u''(t)\\
+        c'''(t) = -a^3 e^{-at}u(t)+3a^2 e^{-at}u'(t)-3ae^{-at}u''(t)+e^{-at}u'''(t)
+    \end{gathered}
+\end{equation}
+Substituting into our differential equation:
+\begin{equation}
+        \left[\frac{\mathrm{d^3}}{\mathrm{d}t^3}+(-3a+a)\frac{\mathrm{d}^2}{\mathrm{d}t^2}+(3a^2-2a^2+b^2) \frac{\mathrm{d}}{\mathrm{d}t}\right]u(t)= e^{at}
+\end{equation}
+Simplfying and substituting $g(t) = u'(t)$:
+\begin{equation}
+    \left[\frac{\mathrm{d}^2}{\mathrm{d}t^2}-2a \frac{\mathrm{d}}{\mathrm{d}t} + (a^2+b^2)\right]g(t) = e^{at}
+\end{equation}
+\subsection{}
+To solve this differential equation, first we need to solve homogeneous part:
+\begin{equation}
+    \begin{gathered}
+        g''(t)-2ag'(t) + (a^2+b^2)g(t) = 0\\
+        \lambda^2-2a\lambda+a^2+b^2 = 0\\
+        \lambda_{1,2} = \frac{2a\pm\sqrt{4a^2-4(a^2+b^2)}}{2} = a\pm ib
+    \end{gathered}
+\end{equation}
+Therefore our homogeneous solution is:
+\begin{equation}
+    g_h(t) = c_1e^{(a+ib)t}+c_2e^{(a-ib)t}
+\end{equation}
+\subsection{}
+Combining homogeneous and particular solutions we get:
+\begin{equation}
+    c(t) = c_1e^{-at}+ c_2e^{(a+ib)t}+c_3e^{(a-ib)t}+\frac{1}{ab^2}
+\end{equation}
+\end{document}

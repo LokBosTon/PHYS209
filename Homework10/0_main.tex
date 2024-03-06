@@ -1,0 +1,120 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+\everymath{\displaystyle}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+\section{Problem 1}
+\subsection{}
+If we declare $z = e^{i\pi\theta}$, then $z^* = e^{-i\pi\theta}$. Therefore $f(z^*)$:
+\begin{equation}
+    \begin{gathered}
+        \sin(1) + \cos(1) = 1.38177329068\\
+        \sin(e^{-i\pi/4}) + \cos(e^{-i\pi/4}) = 0.76536686473\\
+        \sin(e^{-i\pi/2}) + \cos(e^{-i\pi/2}) =  0.38177329068\\
+        \sin(e^{-3i\pi/4}) + \cos(e^{-3i\pi/4}) = 0.76536686473\\
+    \end{gathered}
+\end{equation}
+\subsection{}
+From Euler's formula we know that $e^{i\theta} = \cos(\theta) + i\sin(\theta)$. From which we can derive:
+\begin{equation}
+    \label {eq:cos}
+    \begin{gathered}
+        \cos(\theta) = \frac{e^{i\theta} + e^{-i\theta}}{2}\\
+        \sin(\theta) = \frac{e^{i\theta} - e^{-i\theta}}{2i}
+    \end{gathered}
+\end{equation}
+Putting these into $f(z)$ we get:
+\begin{equation}
+    f(z) = \frac{e^{iz}-e^{-iz}}{2i} + \frac{e^{iz}+e^{-iz}}{2}
+\end{equation}
+Getting complex conjugate of $f(z)$:
+\begin{equation}
+    \begin{split}
+        (f(z))^* &= \left(\frac{e^{iz}-e^{-iz}}{2i} + \frac{e^{iz}+e^{-iz}}{2}\right)^*\\
+        &= \left(\frac{e^{iz}-e^{-iz}}{2i}\right)^* + \left(\frac{e^{iz}+e^{-iz}}{2}\right)^*\\
+        &= \frac{e^{-iz^*}-e^{iz^*}}{-2i} + \frac{e^{-iz^*}+e^{iz^*}}{2}\\
+        &= \frac{e^{iz^*}-e^{-iz^*}}{2i} + \frac{e^{-iz^*}+e^{iz^*}}{2}\\
+        &= f(z^*)
+    \end{split}
+\end{equation} 
+\subsection{}
+If we define $g(z)$ to be equal $\cos(iz)$ then using \ref{eq:cos} we get:
+\begin{equation}
+        g(z) = \cos(iz) = \frac{e^{-z} + e^z}{2}
+\end{equation}
+Then to find complex conjugate of $g(z)$ we get:
+\begin{equation}
+    \begin{split}
+        (g(z))^* &= \left(\frac{e^{-z} + e^z}{2}\right)^*\\
+        &= \frac{e^{-z^*} + e^{z^*}}{2}\\
+        &= g(z^*)
+    \end{split}
+\end{equation}
+Similarly if we define $h(z)$ to be equal $\sin(iz)$ then using \ref{eq:cos} we get:
+\begin{equation}
+        h(z) = \sin(iz) = \frac{e^{-z} - e^z}{2i}
+\end{equation}
+Then to find complex conjugate of $h(z)$ we get:
+\begin{equation}
+    \begin{split}
+        (h(z))^* &= \left(\frac{e^{-z} - e^z}{2i}\right)^*\\
+        &= \frac{e^{-z^*} - e^{z^*}}{-2i}\\
+        &= -h(z^*)\\
+        &\neq h(z^*)
+    \end{split}
+\end{equation}
+\section{Problem 2}
+\subsection{}
+To derive most general $3x3$ Hermitian matrix, we can start with a general $3x3$ matrix:
+\begin{equation}
+    \begin{pmatrix}
+        a + ia' & b + ib'  & c + ic'\\
+        d + id' & e + ie' & f + if'\\
+        g + ig' & h + ih' & k + ki'
+    \end{pmatrix}
+\end{equation}
+Where $z$ is real part $z_{ij}$ and $z'$ is imaginary part. Now finding complex conjugate of the matrix:
+\begin{equation}
+    \begin{pmatrix}
+        a - ia' & d - id'  & g - ig'\\
+        b - ib' & e - ie' & h - ih'\\
+        c - ic' & f - if' & k - ki'
+    \end{pmatrix}
+\end{equation}
+Since matrix is Hermitian, it must be equal to its complex conjugate. Therefore:
+\begin{equation}
+    \begin{gathered}
+        a + ia' = a - ia' \Rightarrow a' = 0\\
+        b + ib' = d - id' \Rightarrow b' = -d', b = d\\
+        c + ic' = g - ig' \Rightarrow c' = -g', c = d\\
+        e + ie' = e - ie' \Rightarrow e' = 0\\
+        f + if' = h - ih' \Rightarrow f' = -h', f = h\\
+        k + ki' = k - ki' \Rightarrow k' = 0
+    \end{gathered}
+\end{equation} 
+Therefore most general $3x3$ Hermitian matrix is:
+\begin{equation}
+    \begin{pmatrix}
+        a & b - ib'  & c - ic'\\
+        b + ib' & e & f - if'\\
+        c + ic' & f + if' & k
+    \end{pmatrix}
+\end{equation}
+\end{document}

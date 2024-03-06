@@ -1,0 +1,96 @@
+\documentclass[12pt]{article}
+
+\usepackage{EngReport}
+
+\graphicspath{{Images/}}
+\bibliography{Sources}
+\onehalfspacing
+\graphicspath{{images/}}
+\geometry{letterpaper, portrait, includeheadfoot=true, hmargin=1in, vmargin=1in}
+
+\renewcommand\thesection{(\arabic{section})}
+\renewcommand\thesubsection{(\arabic{section}.\arabic{subsection})}
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+
+%\fontsize{font size}{vertsize (usually 1.2x)}\selectfont
+
+\begin{document}
+\renewcommand{\familydefault}{\rmdefault}
+
+\input{titlepage}
+\input{headerfooter}
+
+\section{Problem 1}
+\subsection{}
+We have a differential equation:
+\begin{equation}
+    x^2f'''(x)+\frac{(4+x)x}{2}f''(x)+\frac{4-x}{2}f'(x) - \frac{1}{2}f(x) = 0
+\end{equation}
+And we are already told that one of our solutions is $1/x^k$ for some \textit{k}. Lets use the method of reduction of order to reduce the order of given differential equation.
+For this we will substitue in the following:
+\begin{equation}
+    f(x) = \frac{g(x)}{x^k}
+\end{equation}
+Finding derivatives of $f(x)$:
+\begin{equation}
+    f'(x) = \frac{g'(x)x^k - kg(x)x^{k-1}}{x^{2k}}
+\end{equation}
+\begin{equation}
+    f''(x) = \frac{g''(x)x^k - 2kg'(x)x^{k-1} + k(k+1)g(x)x^{k-2}}{x^{3k}}
+\end{equation}
+\begin{equation}
+    f'''(x) = \frac{g'''(x)x^k - 3kg''(x)x^{k-1} + 3k(k+1)g'(x)x^{k-2} - k(k+1)(k+2)g(x)x^{k-3}}{x^{4k}}
+\end{equation}
+For us to be able to reduce the order of differential equation, we need $g(x)$ to not be present ion our equation, so coefficient of $g(x)$ must be zero:
+\begin{equation}
+    x^2\left[-k(k+1)(k+2)x^{-k-3}\right]+ \frac{(4+x)x}{2} \left[k(k+1)x^{-k-2}\right]-\frac{4-x}{2}\left[-kx^{-k-1}\right]-\frac{1}{2}x^{-k}=0
+\end{equation}
+Multiplying both sides by $2x^{k+1}$:
+\begin{equation}
+    2k^3+2k^2-4k+xk^2+x = 0
+\end{equation}
+After refactoring we get:
+\begin{equation}
+    \left(k-1\right)\left(2k^2+4k-xk-x\right) = 0
+\end{equation}
+Giving us three solutions:
+\begin{equation}
+    k_1 = 1 \quad k_{2,3} = \frac{1}{2}\left(-2\pm\sqrt{4+4x}\right)
+\end{equation}
+Since only $k_1$ is x-independent, we will use it to reduce the order of our differential equation.
+% ----------------------------------------------------------------------------------------
+\subsection{}
+After substituting $k=1$ into our equation, we get:
+\begin{eqnarray}
+    xg'''(x) + \left[-3+\frac{4+x}{2}\right]g''(x) + \left[6\frac{1}{x}-\frac{4-x}{x}+\frac{-4+x}{2x}\right]g'(x) = 0 
+\end{eqnarray}
+Multiplying both sides by $2$ we get our final form of differential equation for $g(x)$:
+\begin{equation}
+    2xg'''(x) + (x-2)g''(x) - g'(x) = 0
+\end{equation}
+% ----------------------------------------------------------------------------------------
+\subsection{}
+Now substituting $g'(x) = h(x)$ we get:
+\begin{equation}
+    2xh'(x) + (x-2)h(x) - h'(x) = 0
+\end{equation}
+To solve this equation we need to rewrite it in form:
+\begin{equation}
+    \label{eq:form}
+    \left(\alpha(x)h'(x)+h(x)\right) + \beta(x) \frac{\mathrm{d}}{\mathrm{d}x} \left[\alpha(x)h'(x)+h(x)\right] = 0
+\end{equation}
+Let's open the brackets and simplify:
+\begin{equation}
+    \begin{split}
+        &2xh''(x) - xh'(x) + 2h'(x) - h(x) = 0 \quad \textnormal{multiply by -1}\\
+        &-2xh'(x) + xh'(x) - 2h'(x) + h(x) = 0 \\
+        &\left(-2h'(x)+h(x)\right) + \left(-2xh''(x)+xh'(x)\right) = 0\\
+        &\left(-2h'(x)+h(x)\right) + x\left(-2h''(x)+h'(x)\right) = 0\\\
+        &\left(-2h'(x)+h(x)\right) + x\frac{\mathrm{d}}{\mathrm{d}x}\left[-2h'(x)+h(x)\right] = 0\\
+    \end{split}
+\end{equation}
+Which is in form \ref{eq:form} with $\alpha(x) = -2$ and $\beta(x) = x$.
+% ----------------------------------------------------------------------------------------
+\subsection{}
+\end{document}
+
